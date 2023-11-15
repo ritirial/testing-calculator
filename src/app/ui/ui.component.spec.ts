@@ -68,7 +68,7 @@ describe('Ui Addition - Component', () => {
   });
 
 
-  it('should add operator1 and operator2 when i click the addition button ', () => {
+  it('should add operator1 and operator2 when I click the addition button ', () => {
     // Arrange 
     component.operator1 = 5.0;
     component.operator2 = 2.5;
@@ -134,7 +134,7 @@ describe('Ui Substraction - Component', () => {
   });
 
 
-  it('should substract operator1 and operator2 when i click the substraction button ', () => {
+  it('should substract operator1 and operator2 when I click the substraction button ', () => {
     // Arrange 
     component.operator1 = 5.0;
     component.operator2 = 2.6;
@@ -166,3 +166,70 @@ describe('Ui Substraction - Component', () => {
   });
 
 });
+
+describe('Ui Multiplication - Component', () => {
+  let component: UiComponent;
+  let fixture: ComponentFixture<UiComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ UiComponent ],
+      imports: [FormsModule],
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UiComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('Should call multiplication method', () => {
+     // Arrange
+     let result = 0;
+     component.operator1 = 10;
+     component.operator2 = 6;
+ 
+     // Act
+     component.multiplication();
+     result = component.result;
+ 
+     // Assert
+     expect(result).toBe(60);
+
+  });
+
+  it('should multiply operator1 and operator2 when I click the multiplication button ', () => {
+    // Arrange 
+    component.operator1 = 5.0;
+    component.operator2 = 3;
+    let multiplicationButton = fixture.debugElement.query(By.css('.multiplication-button'));
+
+    // Act
+    multiplicationButton.triggerEventHandler('click', null);
+
+    // Assert
+    expect(component.result).toBe(15.0);
+
+   });
+
+  it('Should render multiplication in result div', () => {
+    // Arrange
+    component.operator1 = 5;
+    component.operator2 = 2;
+ 
+    // Act
+    component.multiplication();
+    fixture.detectChanges();
+    
+    let de = fixture.debugElement.query(By.css('.result'));
+    let el : HTMLElement = de.nativeElement;
+
+    // Assert
+    expect(el.innerText).toContain('10');
+     
+  });
+
+});
+
