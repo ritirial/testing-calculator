@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { UiComponent } from './ui/ui.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
@@ -12,7 +12,8 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

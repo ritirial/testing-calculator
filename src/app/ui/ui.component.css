@@ -22,15 +22,19 @@
     font-size: 1.5em;
     font-weight: bold;
     color: blue;
+}
 
+.op-button {
+    padding: 0.1em 0.3em;
+    font-size: 1.3em;
+
+    cursor: pointer;
 }
 
 .addition-button {
-    cursor: pointer;
     color: blue;
 }
+
 .substraction-button {
-    cursor: pointer;
     color: green;
 }
-

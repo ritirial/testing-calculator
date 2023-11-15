@@ -101,3 +101,68 @@ describe('Ui Addition - Component', () => {
 
 });
 
+describe('Ui Substraction - Component', () => {
+  let component: UiComponent;
+  let fixture: ComponentFixture<UiComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ UiComponent ],
+      imports: [FormsModule],
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UiComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('Should call substraction method', () => {
+     // Arrange
+     let result = 0;
+     component.operator1 = 10;
+     component.operator2 = 6;
+ 
+     // Act
+     component.substraction();
+     result = component.result;
+ 
+     // Assert
+     expect(result).toBe(4);
+  });
+
+
+  it('should substract operator1 and operator2 when i click the substraction button ', () => {
+    // Arrange 
+    component.operator1 = 5.0;
+    component.operator2 = 2.6;
+    let substractionButton = fixture.debugElement.query(By.css('.substraction-button'));
+
+    // Act
+    substractionButton.triggerEventHandler('click', null);
+
+    // Assert
+    expect(component.result).toBe(2.4);
+
+   });
+
+  it('Should render substraction in result div', () => {
+    // Arrange
+    component.operator1 = 5;
+    component.operator2 = 2;
+ 
+    // Act
+    component.substraction();
+    fixture.detectChanges();
+    
+    let de = fixture.debugElement.query(By.css('.result'));
+    let el : HTMLElement = de.nativeElement;
+
+    // Assert
+    expect(el.innerText).toContain('3');
+     
+  });
+
+});
