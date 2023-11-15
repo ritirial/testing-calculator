@@ -365,3 +365,68 @@ describe('Ui Exponente - Component', () => {
   });
 
 });
+
+
+describe('Ui Raiz cuadrada - Component', () => {
+  let component: UiComponent;
+  let fixture: ComponentFixture<UiComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ UiComponent ],
+      imports: [FormsModule],
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UiComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('Should call sqrt method', () => {
+     // Arrange
+     let result = 0;
+     component.operator1 = 16;
+ 
+     // Act
+     component.sqrt();
+     result = component.result;
+ 
+     // Assert
+     expect(result).toBe(4);
+
+  });
+
+  it('should operate operator1 when I click the sqrt button ', () => {
+    // Arrange 
+    component.operator1 = 25.0;
+
+    let sqrtButton = fixture.debugElement.query(By.css('.sqrt-button'));
+
+    // Act
+    sqrtButton.triggerEventHandler('click', null);
+
+    // Assert
+    expect(component.result).toBe(5.0);
+
+   });
+
+  it('Should render sqrt in result div', () => {
+    // Arrange
+    component.operator1 = 36;
+ 
+    // Act
+    component.sqrt();
+    fixture.detectChanges();
+    
+    let de = fixture.debugElement.query(By.css('.result'));
+    let el : HTMLElement = de.nativeElement;
+
+    // Assert
+    expect(el.innerText).toContain('6');
+     
+  });
+
+});
